@@ -1,0 +1,56 @@
+Food Type
+
+1：家常菜
+2：莘庄周边
+3：大润发周边
+4：五角场周边
+
+Food Object
+
+foodName foodType foodRate
+
+    
+    /*var TestObject = Parse.Object.extend("TestObject");
+    var testObject = new TestObject();
+      testObject.save({foo: "bar"}, {
+      success: function(object) {
+        $(".success").show();
+      },
+      error: function(model, error) {
+        $(".error").show();
+      }
+    });*/
+	
+	/**
+ * use simple syntax to create a new subclass of Parse.Object
+ */	
+
+var Food = Parse.Object.extend("Food");
+
+/**
+ * create a new instance of that class
+ */
+
+var food = new Food();
+
+/**
+ * set and then save the object to the server.
+ */
+food.save({
+		"foodName" : "宫保鸡丁",
+		"foodType" : 1,
+		"foodRate" : 5
+		
+	},{
+		success: function(object) {
+			//The food object has been successfully uploaded into server
+		}, 
+		fail: function(object, error) {
+			/**
+			 * The save failed.
+    		 * Error is a Parse.Error with an error code and description.
+			 */
+			 alert("Error: " + error.code + " " + error.message);
+		}
+	}
+);
