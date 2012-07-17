@@ -8,11 +8,12 @@ UserControl.prototype = {
 		Parse.User.logIn(username, password, {
 			success : function(user) {
 				//success log in
-				alert("user successful login: " + user.get("username"));
+				//alert("user successful login: " + user.get("username"));
+				window.location.href = "foods.html";
 			},
 			error : function(user, error) {
 				//The login failed, check for the error
-				alert("error: " + error.code + " " + error.message);
+				$(".login-form .error").html("error: " + error.code + " " + error.message).show(3);
 			}
 		});
 		
@@ -20,6 +21,7 @@ UserControl.prototype = {
 	logout : function() {
 		//logout code here
 		Parse.User.logOut();
+		window.location.href = "index.html";
 	},
 	register : function(username, password, email) {
 		//register code here
@@ -47,10 +49,9 @@ UserControl.prototype = {
 		var currentUser = Parse.User.current();
 		if (currentUser) {
 			//return back the current user;
-			return currentUser;
+			return currentUser.get("username");
 		} else {
 			//show the signup or login page
-			alert("please login first");
 			return null;
 		}
 	}
@@ -104,7 +105,15 @@ FoodUtil.prototype = {
 		query.equalTo("foodType", foodType);
 		query.find({
 			success : function(results) {
-				alert ("resultsc counts: " + results.length);
+				var foodsCounts = results.length;
+				if (foodsCounts > 0) {
+					if (foodType == 1 || foodType == 2 || foodType == 3 || foodType == 4 || foodType == 5) {
+						var randomInt = getRandomInt(0, foodsCounts - 1);
+						$("#foods-list").html("<li>" + results[randomInt].get("foodName") + "  Rate: " + results[randomInt].get("foodRate") + "</li>");
+					}	
+				} else {
+					alert ("There is no suggestion!");
+				}
 			},
 			error : function(error) {
 				alert("Error: " + error.code + " " + error.message);
@@ -119,4 +128,6 @@ function initParse() {
 	
 };
 
-
+function getRandomInt(startInt, endInt) {
+			return Math.round(startInt + Math.random()*(endInt - startInt));
+		}

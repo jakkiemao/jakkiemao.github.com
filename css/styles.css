@@ -1,7 +1,15 @@
 body {
-    background: url(../img/bg.png);
-    text-align: center;
-    padding: 0 25px;
+    background: #eeeeee url(../img/bg.png);
+    font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.4em;
+    color: #4d4d4d;
+    width: 550px;
+    margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -ms-font-smoothing: antialiased;
+    -o-font-smoothing: antialiased;
+    font-smoothing: antialiased;
 }
 
 #main {
@@ -37,4 +45,71 @@ body {
     font-size: 12px;
     color: green;
     line-height: 13px;
+}
+#foods-app {
+	margin-top: 40px;
+}
+
+#foods-app h1 {
+	font-size: 70px;
+	font-weight: bold;
+	text-align: center;
+	color: #999;
+}
+
+#foods-app .content {
+	background:#FFFFFF;
+	padding-bottom: 40px;
+}
+
+#foods-app header {
+	height: 15px;
+	background: #8D7D77;
+	border-bottom: 1px solid #6c615c;
+}
+#foods-app .content .login h2 {
+	font-size: 25px;
+	font-weight: normal;
+	margin-bottom: 20px;
+}
+#foods-app .content .login {
+	width: 350px;
+	margin-top: 45px;
+	margin-right: auto;
+	margin-bottom: 25px;
+	margin-left: auto;
+}
+
+#foods-app .content .login .error {
+	border: 1px solid red;
+    background: #FDEFF0;
+    padding: 5px 15px;
+    margin-bottom: 15px;
+}
+
+#foods-app .content .login input {
+	width: 340px;
+	padding: 5px;
+	font-size: 20px;
+	margin-bottom: 10px;
+	display: block;
+}
+
+#info {
+	margin-right: 5px;
+	font-size: 20px;
+}
+
+#foods-app .content .step .step-header {
+	font-size: 18px;
+	font-style: italic;
+	font-weight: bold;
+	color: #600;
+	text-decoration: underline;
+}
+#foods-app .content .step .step-content {
+	padding: 20px;
+}
+#foods-app .content #foods-select-form .step {
+	margin: 10px;
 }
