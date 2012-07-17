@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>My Parse App</title>
+  <meta name="description" content="Food Selection For Sin">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.0.7.min.js"></script>
+  <script type="text/javascript" src="js/sel.js"></script>
+</head>
+
+<body>
+	<div id="info">Welcome, <span id="username"></span><a id="logout">     logout</a></div>
+	<div id="foods-app">
+    	<div class="title">
+       		<h1>Choose Foods</h1>
+    	</div>
+        <div class="content">
+        	<header id="header"></header>
+            <form id="foods-select-form">
+            <div class="step">
+            	<div class="step-header">Step 1 Where do you want to have dinner, dear?</div>
+                <div class="step-content">
+                    <select name="foodType" id="choose-foodType">
+                    	<option value="1">莘庄周边</option>
+                        <option value="2">南方商城周边</option>
+                        <option value="3">家常菜</option>
+                        <option value="4">五角场周边</option>
+                        <option value="5">大润发周边</option>
+                    </select>
+                </div>
+                <div class="step-header">Step 2 Random or Choose</div>
+                <div class="step-content">
+                    <input type="button" id="randomChoose" value="Random">
+<!--                    <input type="button" id="selectChoose" value="Choose From List">
+-->                </div>
+                <div class="step-header">Step 3 Results Here</div>
+                <div class="step-content">
+                	<ul id="foods-list">
+                    	<li>333</li>
+                    </ul>
+                </div>                
+            </div>
+            </form>
+            <div>
+                <form class="addFood-form">
+                    <h2>Add Food</h2>
+                    <div class="error" style="display:none"></div>
+                    <input type="name" id="addFood-name" placeholder="food name" />
+					<select name="foodType" id="addFood-type">
+                    	<option value="1">莘庄周边</option>
+                        <option value="2">南方商城周边</option>
+                        <option value="3">家常菜</option>
+                        <option value="4">五角场周边</option>
+                        <option value="5">大润发周边</option>
+                    </select>                   
+                    <input type="rate" id="addFood-rate" placeholder="food rate" />
+                    <input type="button" id="addFood-submit-button" value="add"/>
+                </form>
+        	</div>
+        </div>
+	</div>
+    
+    <script>
+    	$().ready(function(e) {
+			
+            initParse();
+		
+			//init global object
+			var userControl = new UserControl();	
+			var foodUtil = new FoodUtil();	
+			//set welcome username
+			$("#username").html(userControl.getCurrentUser());
+			
+			//bind logout event
+			$("#logout").click(function(e) {
+                userControl.logout();
+            });
+			
+			$("#randomChoose").click(function(e) {
+                var foodType = Number($("#choose-foodType").select().val());
+				foodUtil.queryWithType(foodType);
+				
+            });
+			$("#addFood-submit-button").click(function(e) {
+				var foodName = $("#addFood-name").val();
+				var foodType = Number($("#addFood-type").select().val());
+				var foodRate = Number($("#addFood-rate").val());
+				foodUtil.add(foodName, foodType, foodRate);
+			});
+        });
+    </script>
+</body>
+</html>
