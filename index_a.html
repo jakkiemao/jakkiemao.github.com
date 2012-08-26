@@ -1,0 +1,102 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <title>My Parse App</title>
+  <meta name="description" content="Food Selection For Sin">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.0.7.min.js"></script>
+  <script type="text/javascript" src="js/sel.js"></script>
+</head>
+
+<body>
+
+	<form class="login-form">
+    	<h2>Log In</h2>
+        <div class="error" style="display:none"></div>
+        <input type="text" id="login-username" placeholder="Username" />
+        <input type="password" id="login-password" placeholder="Password"/>
+        <input type="button" id="login-submit-button" value="login"/>
+    </form>
+    
+    <form class="register-form">
+    	<h2>Register</h2>
+        <div class="error" style="display:none"></div>
+        <input type="text" id="register-username" placeholder="Username" />
+        <input type="password" id="register-password" placeholder="Password"/>
+        <input type="email" id="register-email" placeholder="Email" />
+        <input type="button" id="register-submit-button" value="register"/>
+    </form>
+	<input type="button" id="currentUser" value="Check Current User"/>
+    <input type="button" id="logout" value="logout"/>
+    
+    <form class="addFood-form">
+    	<h2>Add Food</h2>
+        <div class="error" style="display:none"></div>
+        <input type="name" id="addFood-name" placeholder="food name" />
+        <input type="type" id="addFood-type" placeholder="food type"/>
+        <input type="rate" id="addFood-rate" placeholder="food rate" />
+        <input type="button" id="addFood-submit-button" value="add"/>
+    </form>
+    
+    <form class="addFood-form">
+    	<h2>Query with food type</h2>
+        <div class="error" style="display:none"></div>
+        <input type="type" id="query-food-type" placeholder="food type"/>
+        <input type="button" id="query-food-type-submit-button" value="add"/>
+    </form>
+    
+  <script type="text/javascript">
+    $().ready(function(e) {
+        initParse();
+		
+		//init global object
+		var userControl = new UserControl();	
+		var foodUtil = new FoodUtil();	
+		
+		//bind form action to function
+		$("#login-submit-button").click(function(e) {
+			var username = $("#login-username").val();
+			var password = $("#login-password").val();
+			userControl.login(username, password);
+		});
+		
+		$("#register-submit-button").click(function(e) {
+			var username = $("#register-username").val();
+			var password = $("#register-password").val();
+			var email = $("#register-email").val();
+			userControl.register(username, password, email);
+		});
+		$("#currentUser").click(function(e) {
+            var user = userControl.getCurrentUser();
+			alert ("user: " + user.get("username"));
+        });
+		$("#logout").click(function(e) {
+            userControl.logout();
+        });
+		$("#addFood-submit-button").click(function(e) {
+            var foodName = $("#addFood-name").val();
+			var foodType = Number($("#addFood-type").val());
+			var foodRate = Number($("#addFood-type").val());
+			foodUtil.add(foodName, foodType, foodRate);
+        });
+		$("#query-food-type-submit-button").click(function(e) {
+            var foodType = Number($("#query-food-type").val());
+			foodUtil.queryWithType(foodType);
+        });
+		
+    });
+	
+	
+	
+	
+  </script>
+</body>
+
+
+
+
+
+</html>

@@ -1,5 +1,6 @@
-// JavaScript Document
-
+function initParse() {
+	Parse.initialize("DiI2NCuAUiYtho4e64vJzveX4HUQiGvzpNKAbxga", "hpT3NBz8AILn1ZEAY7fKYDCHnGUrmkIEOhw2G0rw");
+};
 
 function UserControl(){};
 UserControl.prototype = {
@@ -9,11 +10,11 @@ UserControl.prototype = {
 			success : function(user) {
 				//success log in
 				//alert("user successful login: " + user.get("username"));
-				window.location.href = "foods.html";
+				window.location.href = "#main-page";
 			},
 			error : function(user, error) {
 				//The login failed, check for the error
-				$(".login-form .error").html("error: " + error.code + " " + error.message).show(3);
+				$(".login-error-info").html("error: " + error.code + " " + error.message).show(3);
 			}
 		});
 		
@@ -21,7 +22,7 @@ UserControl.prototype = {
 	logout : function() {
 		//logout code here
 		Parse.User.logOut();
-		window.location.href = "index.html";
+		window.location.href = "#login-page";
 	},
 	register : function(username, password, email) {
 		//register code here
@@ -35,7 +36,7 @@ UserControl.prototype = {
 			{
 				success : function(user) {
 					//let's use the app now.
-					alert ("welcome " +  user.get("username"));
+					window.location.href="#main-page";
 				},
 				error : function(user, error) {
 					//register failed
@@ -52,7 +53,7 @@ UserControl.prototype = {
 			return currentUser.get("username");
 		} else {
 			//show the signup or login page
-			window.location.href = "login-page.html";
+			return null;
 		}
 	}
 };
@@ -78,7 +79,7 @@ FoodUtil.prototype = {
 				success: function(object) {
 					//The food object has been successfully uploaded into server
 					/*****Following should be updated************/
-					alert("food add sucessfully")
+					window.location.href = "#main-page";
 				}, 
 				error: function(object, error) {
 					/**
@@ -109,10 +110,10 @@ FoodUtil.prototype = {
 				if (foodsCounts > 0) {
 					if (foodType == 1 || foodType == 2 || foodType == 3 || foodType == 4 || foodType == 5) {
 						var randomInt = getRandomInt(0, foodsCounts - 1);
-						$("#foods-list").html("<li>" + results[randomInt].get("foodName") + "  Rate: " + results[randomInt].get("foodRate") + "</li>");
+						$("#foods-list li").html("<li>餐厅名： " + results[randomInt].get("foodName") + "  得分: " + results[randomInt].get("foodRate") + "</li>");
 					}	
 				} else {
-					alert ("There is no suggestion!");
+					$("#foods-list").html (" <h2>There is no suggestion!</h2>");
 				}
 			},
 			error : function(error) {
@@ -125,9 +126,8 @@ FoodUtil.prototype = {
 
 function initParse() {
 	Parse.initialize("DiI2NCuAUiYtho4e64vJzveX4HUQiGvzpNKAbxga", "hpT3NBz8AILn1ZEAY7fKYDCHnGUrmkIEOhw2G0rw");
-	
 };
 
 function getRandomInt(startInt, endInt) {
-			return Math.round(startInt + Math.random()*(endInt - startInt));
-		}
+	return Math.round(startInt + Math.random()*(endInt - startInt));
+}
