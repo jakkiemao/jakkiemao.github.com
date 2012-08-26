@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>jQuery Mobile Web 应用程序</title>
 
-<link rel="apple-touch-icon-precomposed" sizes="57x57" href="icon-57.png">
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="icon-57.jpg">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="icon-72.jpg">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="icon-114.jpg">
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="icon-144.jpg">
@@ -88,9 +88,9 @@ $().ready(function(e) {
     <div data-role="content">
         <form class="login-form">    
             <div data-role="fieldcontain">
-            <div class="login-error-info">wrong</div>
-            <input type="text" id="login-username"  placeholder="用户名"/>
-            <input type="password" id="login-password" placeholder="密码"/>
+            <div class="login-error-info" style="color: #F00"></div>
+            <input type="text" id="login-username"  placeholder="用户名" style="width: 100%;"/>
+            <input type="password" id="login-password" placeholder="密码" style="width: 100%;"/>
             </div>
             <div id="login-submit-button" data-role="button" data-theme="b">登录</div>
         </form>
@@ -113,8 +113,8 @@ $().ready(function(e) {
         	<h2>Register</h2>
             <div data-role="fieldcontain">
             <div class="error" style="display:none"></div>
-            <input type="text" id="register-username" placeholder="用户名" />
-            <input type="password" id="register-password" placeholder="密码"/>           <input type="email" id="register-email" placeholder="邮箱" />
+            <input type="text" id="register-username" placeholder="用户名" style="width: 100%"/>
+            <input type="password" id="register-password" placeholder="密码" style="width: 100%"/>           <input type="email" id="register-email" placeholder="邮箱" style="width: 100%"/>
             </div>
             <input type="button" id="register-submit-button" value="注册"/>
         </form>
@@ -129,7 +129,6 @@ $().ready(function(e) {
 	<div data-role="header" data-position="fixed">
 		<a data-role="button" data-icon="home" href="#main-page">首页</a>
         <h1>查看所有餐厅</h1>
-        <div data-role="button" data-icon="delete" class="ui-btn-right" >登出					</div>
     </div>
     
 	<div data-role="content">	
@@ -145,7 +144,7 @@ $().ready(function(e) {
        	<div data-role="list-divider"></div>
         <ul data-role="listview">
         	<li>开始选择</li>
-            <li>浏览所有餐厅</li>
+<!--            <li>浏览所有餐厅</li>-->
             <li>添加餐厅</li>
         </ul>
 	</div>
@@ -158,21 +157,20 @@ $().ready(function(e) {
 	<div data-role="header" data-position="fixed">
 		<a data-role="button" data-icon="home" href="#main-page">首页</a>
         <h1>添加餐厅</h1>
-        <div data-role="button" data-icon="delete" class="ui-btn-right" >登出					</div>
     </div>
     
 	<div data-role="content">	
         <form>
         <div data-role="fieldcontain">
-        <input type="text" id="addFood-name" placeholder="餐厅名" />
-        <select name="foodType" id="addFood-type">
-                <option value="1">莘庄周边</option>
+        <input type="text" id="addFood-name" placeholder="餐厅名" style="width: 100%;" />
+        <div><select name="foodType" id="addFood-type" style="width: 100%;">
+                <option value="1" style="width: 100%;">莘庄周边</option>
                 <option value="2">南方商城周边</option>
                 <option value="3">家常菜</option>
                 <option value="4">五角场周边</option>
                 <option value="5">大润发周边</option>
-        </select>
-        <input type="range" name="slider" id="addFood-rate" value="60" min="0" max="100" data-theme="b" />
+        </select></div>
+        <input data-inline="false" type="range" name="slider" id="addFood-rate" value="60" min="0" max="100" data-theme="b"/>
         </div>
         <input type="button" id="addFood-submit-button" value="添加"/>
        	</form>
@@ -187,7 +185,6 @@ $().ready(function(e) {
 	<div data-role="header" data-position="fixed">
 		<a data-role="button" data-icon="home" href="#main-page">首页</a>
         <h1>今晚吃这个如何</h1>
-        <div data-role="button" data-icon="delete" class="ui-btn-right" >登出				</div>
 	</div>
 	<div data-role="content">	
              
@@ -206,7 +203,6 @@ $().ready(function(e) {
 	<div data-role="header" data-position="fixed">
 		<a data-role="button" data-icon="home" href="#main-page">首页</a>
         <h1>开始选择</h1>
-        <div data-role="button" data-icon="delete" class="ui-btn-right" >登出</div>
 	</div>
 	<div data-role="content">	
 		<ul data-role="listview" data-theme="b">
@@ -253,8 +249,8 @@ $().ready(function(e) {
         </p>
         <ul data-role="listview">
         	<li><a href="#choose-page" rel="external">开始选择</a></li>
-            <li><a href="#manage-food-page">浏览所有餐厅</a></li>
-            <li><a href="#add-food-page">添加餐厅</a></li>
+<!--            <li><a href="#manage-food-page">浏览所有餐厅</a></li>-->            
+			<li><a href="#add-food-page">添加餐厅</a></li>
         </ul>
 	</div>
 	<div data-role="footer" data-position="fixed">
